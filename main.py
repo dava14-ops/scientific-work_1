@@ -1,24 +1,3 @@
-"""
-Locked analysis protocol v1.2 (CRITICAL FIX)
-Applicability of an area-velocity draft resistance relation for cultivator
-sweeps: 28 field runs (open dataset, Nagy & Tamas, Data in Brief, 2026).
-
-CHANGES FROM v1.1:
-- SCRS-CV rewritten to eliminate train/test data leakage. Training size is
-  kept equal to (N - n_g); for each test observation in the held-out group a
-  fresh random training set is drawn from all rows EXCEPT that observation.
-- Data-consistency check: recompute q* = F/(w*d) from raw columns and compare
-  with the published specific_resistance_kPa.
-- Preprocessing hardened: NaN/Inf handling for all numeric fields and
-  categorical columns BEFORE casting.
-- Q1 partial F-test: survival-function p-value for numerical stability and an
-  optional HC3 robust Wald test reported alongside the classic test.
-- Paired bootstrap: relative RMSE change added; interpretation caveats noted.
-- AICc convention explicitly documented (K = number of regressors including
-  the constant, sigma^2 profiled out, matching statsmodels OLS).
-
-FREEZE THIS FILE BEFORE inspecting final coefficient values.
-"""
 from __future__ import annotations
 import json, sys
 from pathlib import Path
